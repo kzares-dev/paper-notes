@@ -1,0 +1,19 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import BranchCard from "./BranchCard.astro"
+import Section from "./Section.astro"
+
+const paths = await getCollection("paths");
+---
+    <Section>
+    <div class="flex flex-col gap-1 py-3 pb-5 px-2">
+        <h1 class="text-[50px] font-bold">Coding Branches</h1>
+        <p class="text-sm max-w-[500px]">You need first to choose a brnach Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, dolorem?</p>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mx-auto ">
+        {paths.map((path: CollectionEntry<"paths">) => (
+            <BranchCard key={path.id} path={path} />
+        ))}
+    </div>
+    </Section>

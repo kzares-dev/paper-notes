@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content"
+
+export const getStaticPaths =  ( async () => {
+    const careerPaths = await getCollection("paths");
+    const paths = careerPaths.map((path: CollectionEntry<"paths">) => {
+        return {
+            params : {
+                slug: path.slug
+            },
+            props: {
+                path
+            }
+        }
+    })
+    return paths;
+})
+
+type Props = {
+    path: CollectionEntry<"paths">
+}
+
+const { path } : Props = Astro.props;
+const { Content } = await path.render();
+console.log(path)
+
+---
+<BaseLayout head={{title: path.data.name , description: "no description"}} >
+
+    <div>
+        {path.data.name}    
+        <img src={path.data.image} alt="">
+    
+    </div>
+</BaseLayout>
