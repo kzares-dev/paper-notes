@@ -1,16 +1,21 @@
 ---
+import { Image } from "astro:assets";
 
 const { path } = Astro.props
 const tags = ["php", "cpp" , "c" ,"c","javascript", "cpp" , ]
 ---
 
 <a href={`/paths/${path.slug}`} class="w-full md:max-w-[300px] min-h-[400px] py-5 pt-10 gap-4 px-2 bg-gray-50 border dark:border-none dark:bg-stone-800 z-2 relative rounded-md flex items-center flex-col font-mono hover:shadow-md transition-all">
-    <img 
-    width={40}
-    height={40}
-    src={path.data.image}
-    alt=""
-    />    
+    
+    <div class="p-5 rounded-full bg-white dark:bg-gray-50 border dark:border-none">
+        <Image
+        width={40}
+        height={40}
+        src={path.data.image}
+        alt=""
+    />
+    </div>
+    
     <h1 class="text-xl font-semibold">{path.data.name}</h1>
 
     <p class="text-center text-sm dark:text-gray-400">here goes description Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente consectetur tempora dolores sunt suscipit corporis ullam qui modi voluptatibus eaque.</p>

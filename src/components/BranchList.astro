@@ -4,11 +4,12 @@ import BranchCard from "./BranchCard.astro"
 import Section from "./Section.astro"
 
 const paths = await getCollection("paths");
+
 ---
     <Section>
     <div class="flex flex-col gap-1 py-3 pb-5 px-2">
-        <h1 class="text-[50px] font-bold">Coding Branches</h1>
-        <p class="text-sm max-w-[500px]">You need first to choose a brnach Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, dolorem?</p>
+        <h1 class="dark:text-gray-600 text-gray-700  text-[60px] font-bold">Coding Branches</h1>
+        <p class="text-sm font-semibold font-mono max-w-[600px]">You need first to choose a brnach Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, dolorem?</p>
     </div>
 
     <div class="flex flex-wrap gap-3 mx-auto ">
@@ -17,3 +18,5 @@ const paths = await getCollection("paths");
         ))}
     </div>
     </Section>
+
+    
