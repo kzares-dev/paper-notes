@@ -1,0 +1,22 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"
+import LanguageCard from "./LanguageCard.astro"
+import Section from "./Section.astro"
+
+const languages = await getCollection("languages");
+
+---
+<Section>
+    <div class="flex flex-col gap-1 py-3 pb-5 px-2">
+        <h1 class="dark:text-gray-600 text-gray-700  text-[50px] font-bold">Programming <span class="text-orange-600">Languages</span></h1>
+        
+    </div>
+
+    <div class="flex flex-wrap gap-3 mx-auto ">
+        {languages.map((language: CollectionEntry<"languages">) => (
+            <LanguageCard key={language.id} language={language} />
+        ))}
+    </div>
+    </Section>
+
+    

@@ -21,27 +21,14 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
-		<ViewTransitions />
 		<meta name="description" content={description} />
 		<meta name="author" content={AppConfig.author} />
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    	<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>  </text></svg>">
+    	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>  </text></svg>">
+		<ViewTransitions />
 
-		<script>
-			if (
-				localStorage.getItem('dark-mode') === 'true' ||
-				(!('dark-mode' in localStorage) &&
-					window.matchMedia('(prefers-color-scheme: dark)').matches)
-			) {
-				localStorage.setItem('dark-mode', 'true');
-				document.querySelector('html')?.classList.add('dark');
-			} else {
-				localStorage.setItem('dark-mode', 'false');
-				document.querySelector('html')?.classList.remove('dark');
-			}
-		</script>
 	</head>
 	<body
 		class="flex min-h-screen flex-col bg-gray-100 font-sans text-gray-950 dark:bg-stone-900 dark:text-white transition-all"

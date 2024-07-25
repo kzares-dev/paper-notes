@@ -1,6 +1,6 @@
 ---
+import Section from "@components/Section.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content"
 
@@ -23,15 +23,14 @@ type Props = {
     path: CollectionEntry<"paths">
 }
 
-const { path } : Props = Astro.props;
+const { path }  = Astro.props;
 const { Content } = await path.render();
 console.log(path)
 
----
-<BaseLayout head={{title: path.data.name , description: "no description"}} >
-
-    <div>
+---                                                
+<BaseLayout head={{title: "" , description: "no description"}} >
+    <Section>
         
     
-    </div>
+    </Section>
 </BaseLayout>

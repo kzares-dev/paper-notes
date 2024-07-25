@@ -1,4 +1,4 @@
 ---
-name: "Backend Development"
+name: "Backend"
 image: "/images/backend.svg"
 ---

@@ -9,6 +9,16 @@ const pathsCollection = defineCollection({
     }
 })
 
+const languagesCollection = defineCollection({
+    schema: ({image}) => {
+        z.object({
+            name: z.string(),
+            image: image(),
+        })
+    }
+})
+
 export const collections = {
     paths: pathsCollection,
+    languages: languagesCollection,
 }
