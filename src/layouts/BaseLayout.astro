@@ -1,6 +1,7 @@
 ---
 import Footer from '@components/Footer.astro';
 import Navbar from '@components/Navbar.astro';
+import { ViewTransitions } from 'astro:transitions';
 import { AppConfig } from '@config';
 
 export interface Props {
@@ -20,6 +21,7 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
+		<ViewTransitions />
 		<meta name="description" content={description} />
 		<meta name="author" content={AppConfig.author} />
 
