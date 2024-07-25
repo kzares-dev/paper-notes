@@ -5,6 +5,7 @@ import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import AddPath from "@components/react/AddPath";
 
 export const getStaticPaths = ( async () => {
     const languages = await getCollection("languages");
@@ -31,19 +32,23 @@ console.log(language)
 <BaseLayout head={{title: "" , description: "no description"}} >
     <Section>
 
-        <div class="flex flex-row gap-4">
-            <Image 
-                width={60}
-                height={60}
-                src={language.data.image}
-                alt=""
-            />
-
-            <div class="flex flex-col">
-                <h1 class="dark:text-gray-600 text-gray-700  text-[50px] font-bold"> {language.data.name}  </h1>
-
-                <p class="text-sm text-gray-400 font-semibold max-w-[500px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum possimus, iusto placeat culpa cupiditate at pariatur repudiandae consectetur nam fugit et quasi, aut vel!</p>
+        <div class="flex flex-col items-center md:flex-row justify-between gap-5 lg:gap-10">
+            <div class="flex flex-row gap-4">
+                <Image 
+                    width={60}
+                    height={60}
+                    src={language.data.image}
+                    alt=""
+                />
+    
+                <div class="flex flex-col">
+                    <h1 class="text-gray-700  text-[50px] font-bold"> {language.data.name}  </h1>
+    
+                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum possimus, iusto placeat culpa cupiditate at pariatur repudiandae consectetur nam fugit et quasi, aut vel!</p>
+                </div>
             </div>
+
+            <AddPath client:load path={language.data.name} />
         </div>
         
     </Section>

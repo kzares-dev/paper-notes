@@ -1,8 +1,10 @@
 ---
 import Section from "@components/Section.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content"
+import AddPath from "@components/react/AddPath"
 
 export const getStaticPaths =  ( async () => {
     const careerPaths = await getCollection("paths");
@@ -30,7 +32,25 @@ console.log(path)
 ---                                                
 <BaseLayout head={{title: "" , description: "no description"}} >
     <Section>
-        
+
+        <div class="flex flex-col items-center md:flex-row justify-between gap-5 lg:gap-10">
+            <div class="flex flex-row gap-4">
+                <Image 
+                    width={60}
+                    height={60}
+                    src={path.data.image}
+                    alt=""
+                />
     
+                <div class="flex flex-col">
+                    <h1 class="text-gray-700  text-[50px] font-bold"> {path.data.name}  </h1>
+    
+                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum possimus, iusto placeat culpa cupiditate at pariatur repudiandae consectetur nam fugit et quasi, aut vel!</p>
+                </div>
+            </div>
+
+            <AddPath client:load path={path.data.name} />
+        </div>
+        
     </Section>
 </BaseLayout>

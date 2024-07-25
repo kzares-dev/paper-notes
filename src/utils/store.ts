@@ -1,6 +1,6 @@
 import { atom } from "nanostores";
 
-export const route = atom<string[]>(["backend", "python", "flask"]);
+export const route = atom<string[]>(["backend", "javascript", "java"]);
 
 export function updateRoute(newRoute: string) {
     route.set([...route.get(), newRoute])
