@@ -1,11 +1,10 @@
 ---
-import Section from "@components/Section.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content"
-import AddPath from "@components/react/AddPath"
-import { Code } from "astro:components";
+import AddPath from "@/components/react/AddPath"
 
 export const getStaticPaths =  ( async () => {
     const careerPaths = await getCollection("paths");

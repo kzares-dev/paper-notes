@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { route } from "utils/store";
+import { route } from "@/utils/store";
 
 const SelectedPath = () => {
   const $route = useStore(route);

@@ -2,8 +2,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BranchCard from "./BranchCard";
 import { useEffect, useState } from "react";
 import { useStore } from "@nanostores/react";
-import { route } from "utils/store";
-import { selectType } from "@config";
+import { route } from "src/utils/store";
+import { selectType } from "src/config";
 
 const BranchList = () => {
   const $route = useStore(route)

@@ -1,9 +1,9 @@
 ---
-import LanguageList from "@components/LanguageList.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import LanguageList from "@/components/react/LanguageList";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 ---
 
 <BaseLayout head={{title:"", description:""}} >
-    <LanguageList />
+    <LanguageList client:load />
 </BaseLayout>
