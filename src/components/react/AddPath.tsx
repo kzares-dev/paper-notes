@@ -9,27 +9,26 @@ const AddPath = ({ path, type }: { path: string; type: string }) => {
   const [itemSelected, setItemSelected] = useState(
     $route.includes(path.toLowerCase())
   );
-  const [isSelected, setIsSelected] = useState<boolean>();
   const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
   const onPopupClose = () => {
-    setShowDialog(false);
-    console.log("why not closed")
-    console.log(showDialog)
+    setShowDialog(!showDialog);
   };
   const onPopupAccept = () => {
-    alert("closed")
-   
-    // make something to add the language and remove the past
-  };
+    updateRoute(selectedLanguage);
+    updateRoute(path);
+    setItemSelected(!itemSelected)
+  }
 
   const onButtonPress = () => {
-    if (!isSelected) {
-      setShowDialog(true);
-      return;
+    if(selectedLanguage && selectedLanguage === path.toLowerCase()) updateRoute(path) // remove the item
+    if(selectedLanguage && selectedLanguage !== path.toLowerCase()) setShowDialog(!showDialog);
+    if(!selectedLanguage) {
+      updateRoute(path);
+      setItemSelected(!itemSelected)
     }
-    updateRoute(path.toLowerCase());
-    setItemSelected(!itemSelected);
+
   };
 
   useEffect(() => {
@@ -38,8 +37,8 @@ const AddPath = ({ path, type }: { path: string; type: string }) => {
     const languageSelected = $route.filter(
       (route) => selectType(route) === type
     );
-    setIsSelected(path === languageSelected[0]);
-  }, []);
+    setSelectedLanguage(languageSelected[0] || "");
+  }, [itemSelected]);
 
   return (
     <button
