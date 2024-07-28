@@ -26,7 +26,6 @@ export const getStaticPaths = ( async () => {
 
 const { language }: {language: CollectionEntry<"languages">} = Astro.props;
 const { Content } = await language.render(); 
-console.log(language)
 ---
 
 <BaseLayout head={{title: "" , description: "no description"}} >
@@ -44,11 +43,15 @@ console.log(language)
                 <div class="flex flex-col">
                     <h1 class="text-gray-700  text-[50px] font-bold"> {language.data.name}  </h1>
     
-                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum possimus, iusto placeat culpa cupiditate at pariatur repudiandae consectetur nam fugit et quasi, aut vel!</p>
+                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]"> {language.data.description} </p>
                 </div>
             </div>
 
-            <AddPath client:load path={language.data.name} />
+            <AddPath client:load path={language.data.name} type="language" />
+        </div>
+
+        <div class="prose prose-lg overflow-visible relative py-20 w-full">
+            <Content />
         </div>
         
     </Section>

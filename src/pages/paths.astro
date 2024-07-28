@@ -1,9 +1,8 @@
 ---
-import BranchList from "@components/BranchList.astro";
+import BranchList from "@components/react/BranchList";
 import BaseLayout from "@layouts/BaseLayout.astro";
-
 ---
 
 <BaseLayout head={{title:"", description:""}} >
-    <BranchList />
+    <BranchList client:load />
 </BaseLayout>

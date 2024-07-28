@@ -1,5 +1,5 @@
 ---
-name: "Cloud Architecture"
+name: "Cloud"
 image: "/images/cloud.svg"
 
 ---

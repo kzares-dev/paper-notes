@@ -5,6 +5,8 @@ const pathsCollection = defineCollection({
         z.object({
             name: z.string(),
             image: image(),
+            relatedLanguages: z.string(),
+            description: z.string(),
         })
     }
 })
@@ -14,6 +16,9 @@ const languagesCollection = defineCollection({
         z.object({
             name: z.string(),
             image: image(),
+            relatedBranches: z.string(),
+            relatedFrameworks: z.string(),
+            description: z.string(),
         })
     }
 })

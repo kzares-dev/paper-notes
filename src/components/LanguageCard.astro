@@ -17,5 +17,5 @@ const { language } = Astro.props
     
     <h1 class="text-xl font-semibold underline font-mono ">{language.data.name}</h1>
 
-    <p class="text-center text-sm font-bold text-gray-500 dark:text-gray-400">here goes description Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente consectetur tempora dolores sunt suscipit corporis ullam qui modi voluptatibus eaque.</p>
+    <p class="text-center text-sm font-bold text-gray-500 dark:text-gray-400 line-clamp-3"> {language.data.description} </p>
 </a>

@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content"
 import AddPath from "@components/react/AddPath"
+import { Code } from "astro:components";
 
 export const getStaticPaths =  ( async () => {
     const careerPaths = await getCollection("paths");
@@ -27,13 +28,12 @@ type Props = {
 
 const { path }  = Astro.props;
 const { Content } = await path.render();
-console.log(path)
 
 ---                                                
 <BaseLayout head={{title: "" , description: "no description"}} >
     <Section>
 
-        <div class="flex flex-col items-center md:flex-row justify-between gap-5 lg:gap-10">
+        <div class="flex flex-col items-center md:flex-row justify-between gap-5 lg:gap-10 pb-4">
             <div class="flex flex-row gap-4">
                 <Image 
                     width={60}
@@ -45,11 +45,16 @@ console.log(path)
                 <div class="flex flex-col">
                     <h1 class="text-gray-700  text-[50px] font-bold"> {path.data.name}  </h1>
     
-                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum possimus, iusto placeat culpa cupiditate at pariatur repudiandae consectetur nam fugit et quasi, aut vel!</p>
+                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]"> {path.data.description} </p>
                 </div>
             </div>
 
-            <AddPath client:load path={path.data.name} />
+            <AddPath client:load path={path.data.name} type="path" />
+            
+        </div>
+
+        <div class="prose prose-lg overflow-visible relative py-20 w-full">
+            <Content />
         </div>
         
     </Section>
