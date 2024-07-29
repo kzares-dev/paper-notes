@@ -14,10 +14,9 @@ const { options } = Astro.props;
 const renderItems = await getCollection(options.collection);
 const splitedTitle = options.title.split(" ");
 
-// supose that one param is passed to url 
 ---
 
-<Section>
+<Section> 
   <div class="flex flex-col gap-1 py-3 pb-5 px-2">
     <h1 class="dark:text-gray-600 text-gray-700 text-[60px] font-bold">
       {splitedTitle[0]}

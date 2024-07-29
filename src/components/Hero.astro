@@ -1,124 +1,133 @@
 ---
-import { Image } from 'astro:assets';
-import Section from './Section.astro';
+import { Image } from "astro:assets";
+import Section from "./Section.astro";
 
 const stephs = [
-    {
-        name: "Programming Branch",
-        image: "/images/branch.svg",
-        redirect: "/paths"
-    },
-    {
-        name: "Coding Language",
-        image: "/images/code.svg",
-        redirect: "/languages"
-    },
-    {
-        name: "Framework",
-        image: "/images/framework.svg",
-        redirect: "/languages"
-
-    }
-]
+  {
+    name: "Programming Branch",
+    image: "/images/branch.svg",
+    redirect: "/paths",
+  },
+  {
+    name: "Coding Language",
+    image: "/images/code.svg",
+    redirect: "/languages",
+  },
+  {
+    name: "Framework",
+    image: "/images/framework.svg",
+    redirect: "/languages",
+  },
+];
 ---
 
 <Section>
-	<br />
-    
-    <div id="branches" class="flex flex-row w-full gap-4">
-        <div class="flex-1 py-5 px-3 rounded-md backdrop-blur-2xl relative border bg-gray-50 dark:bg-stone-800 dark:border-black h-fit">
-            <p class="pb-2 pt-6 text-4xl font-bold">Let's <span class="text-orange-600">start</span> from Here </p>
-            <div class="text-[15] font-semibold text-neutral-500 max-w-[800px] w-full py-4">
-            Struggling to navigate the vast world of programming? Our website is your ultimate guide to exploring different programming disciplines and building a successful career. Whether you're a beginner or an experienced programmer looking for a new direction, we're here to help you find your ideal programming path.
+  <br />
+
+  <div>
+    <h2 class="text-sm font-bold font-mono text-gray-500">
+      Select your starting point &
+    </h2>
+    <h1 class="dark:text-gray-600 text-gray-700 text-[60px] font-bold">
+      Begin the journey
+    </h1>
+
+    <div class="w-full flex flex-col md:flex-row gap-5 py-3">
+      <a
+        href="/languages"
+        class="flex p-4 py-6 bg-white border dark:border-none dark:bg-stone-800 w-fit rounded-md flex-1 flex-col gap-3 hover:scale-105 cursor-pointer transition-all ease-in-out"
+      >
+        <div
+          class="flex items-center flex-row gap-5 pb-4 border-orange-600 dark:border-gray-700 border-b-[.1px]"
+        >
+          <div
+            class="p-3 rounded-full dark:bg-gray-400 border dark:border-none h-fit"
+          >
+            <Image width={50} height={50} src="/images/code.svg" alt="" />
+          </div>
+
+          <div>
+            <h1 class="font-bold text-3xl">Start from Programming language</h1>
+            <p class="text-sm pt-2 text-gray-500">
+              Do you know alredy a programming language, well then, you only
+              need to select a path on that direction
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <a
+        href="/branches"
+        class="flex p-4 py-6 bg-white border dark:border-none dark:bg-stone-800 w-fit rounded-md flex-1 flex-col gap-3 hover:scale-105 cursor-pointer transition-all"
+      >
+        <div
+          class="flex items-center flex-row gap-5 pb-4 border-orange-600 dark:border-gray-700 border-b-[.1px]"
+        >
+          <div
+            class="p-3 rounded-full dark:bg-gray-400 border dark:border-none h-fit"
+          >
+            <Image width={50} height={50} src="/images/branch.svg" alt="" />
+          </div>
+
+          <div>
+            <h1 class="font-bold text-3xl">
+              Start from a specific area. Build what you want
+            </h1>
+            <p class="text-sm pt-2 text-gray-500">
+              You know what you whant to built or where to work, then start from
+              a specific programming area
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div id="branches" class="flex flex-row w-full gap-4">
+    <div
+      class="flex-1 py-5 px-3 rounded-md backdrop-blur-2xl relative border bg-gray-50 dark:bg-stone-800 dark:border-black h-fit"
+    >
+      <p class="pb-2 pt-6 text-4xl font-bold">
+        Let's <span class="text-orange-600">start</span> from Here
+      </p>
+      <div
+        class="text-[15] font-semibold text-neutral-500 max-w-[800px] w-full py-4"
+      >
+        Struggling to navigate the vast world of programming? Our website is
+        your ultimate guide to exploring different programming disciplines and
+        building a successful career. Whether you're a beginner or an
+        experienced programmer looking for a new direction, we're here to help
+        you find your ideal programming path.
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 relative pl-4">
+      <h1 class="text-md font-semibold underline">Stephs:</h1>
+
+      <div
+        class="absolute left-0 h-full w-1 dark:bg-orange-700 bg-orange-500 rounded-full"
+      >
+      </div>
+
+      {
+        stephs.map((steph, idx) => (
+          <a
+            href={steph.redirect}
+            class="flex items-center border dark:border-none justify-center flex-col gap-2 text-center p-3 rounded-md font-mono text-xs font-bold bg-white dark:bg-stone-800 relative"
+          >
+            <div class="flex items-center justify-center absolute -left-4 w-6 h-6 dark:bg-orange-700 bg-orange-500  rounded-r-lg font-mono text-sm">
+              {" "}
+              {idx + 1}{" "}
             </div>
-        </div>
-    
-        <div class="flex flex-col gap-4 relative pl-4">
 
-            <h1 class="text-md font-semibold underline">Stephs:</h1>
+            <div class="p-2 rounded-full dark:bg-gray-200 border dark:border-none">
+              <Image width={20} height={20} src={steph.image} alt="" />
+            </div>
 
-            <div class="absolute left-0 h-full w-1 dark:bg-orange-700 bg-orange-500 rounded-full"></div>
-    
-            {stephs.map((steph, idx) => (
-                <a href={steph.redirect} class="flex items-center border dark:border-none justify-center flex-col gap-2 text-center p-3 rounded-md font-mono text-xs font-bold bg-white dark:bg-stone-800 relative"> 
-                    <div class="flex items-center justify-center absolute -left-4 w-6 h-6 dark:bg-orange-700 bg-orange-500  rounded-r-lg font-mono text-sm"> {idx + 1} </div>
-
-                    <div class="p-2 rounded-full dark:bg-gray-200 border dark:border-none">
-                        <Image 
-                        width={20}
-                        height={20}
-                        src={steph.image}
-                        alt=""
-                    />
-                    </div>
-
-                    {steph.name}
-                </a>
-            ))}
-    
-        </div>
-
-        
+            {steph.name}
+          </a>
+        ))
+      }
     </div>
-
-    <div>
-
-        <h2 class="text-sm font-bold font-mono text-gray-500 ">Select your starting point &</h2>
-        <h1 class="dark:text-gray-600 text-gray-700  text-[60px] font-bold ">Begin the journey</h1>
-       
-
-        <div class="w-full flex flex-col md:flex-row gap-5 py-3 ">
-            <a href="/languages" class="flex p-4 py-6 bg-white border dark:border-none dark:bg-stone-800 w-fit rounded-md flex-1 flex-col gap-3 hover:scale-105 cursor-pointer transition-all ease-in-out">
-
-                <div class="flex items-center flex-row gap-5 pb-4 border-orange-600 dark:border-gray-700 border-b-[.1px]">
-                    
-                    <div class="p-3  rounded-full dark:bg-gray-400 border dark:border-none h-fit">
-                        <Image 
-                        width={50}
-                        height={50}
-                        src="/images/code.svg"
-                        alt=""
-                    />
-                    </div>
-
-
-                    <div>
-                        <h1 class="font-bold text-3xl ">Start from Programming language</h1>
-                        <p class="text-sm pt-2 text-gray-500 ">Do you know alredy a programming language, well then, you only need to select a path on that direction</p>
-                    </div>
-                    
-                </div>
-
-
-            </a>
-
-
-            <a href="/branches" class="flex p-4 py-6 bg-white border dark:border-none dark:bg-stone-800 w-fit rounded-md flex-1 flex-col gap-3 hover:scale-105 cursor-pointer transition-all">
-
-                <div class="flex items-center flex-row gap-5 pb-4 border-orange-600 dark:border-gray-700 border-b-[.1px]">
-                    
-                    <div class="p-3  rounded-full dark:bg-gray-400 border dark:border-none h-fit">
-                        <Image 
-                        width={50}
-                        height={50}
-                        src="/images/branch.svg"
-                        alt=""
-                    />
-                    </div>
-
-
-                    <div>
-                        <h1 class="font-bold text-3xl ">Start from a specific area. Build what you want</h1>
-                        <p class="text-sm pt-2 text-gray-500 ">You know what you whant to built or where to work, then start from a specific programming area</p>
-                    </div>
-                    
-                </div>
-
-
-            </a>
-        </div>
-    </div>
-
-
-	
+  </div>
 </Section>
