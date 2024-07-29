@@ -1,0 +1,35 @@
+---
+import RenderCardList from "@/components/RenderCardList.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const languages = await getCollection("languages");
+  const paths = languages.map((language: CollectionEntry<"languages">) => {
+    return {
+      params: {
+        slug: language.slug,
+      },
+      props: {
+        language,
+      },
+    };
+  });
+
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+---
+
+<BaseLayout head={{title:"", description:""}} >
+    <RenderCardList
+        options={{
+            title: "Coding areas",
+            collection: "paths",
+            filter: slug
+        }}
+    />
+</BaseLayout>

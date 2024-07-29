@@ -2,21 +2,34 @@
 import { getCollection } from "astro:content";
 import Section from "./Section.astro";
 import Card from "./Card.astro";
+import type { CollectionEntry } from "astro:content";
 
 export type Props = {
   options: {
     collection: "languages" | "paths";
     title: string;
+    filter?: string;
   };
 };
 const { options } = Astro.props;
 
-const renderItems = await getCollection(options.collection);
-const splitedTitle = options.title.split(" ");
+const allItems = await getCollection(options.collection);
+let renderItems: any = [];
 
+if (!options.filter) renderItems = allItems;
+else {
+  // first check the type of data we are checking
+  if(options.collection === "paths") {
+    renderItems = allItems.filter((item) => item.data.relatedLanguages.includes(options.filter) )
+  }else {
+    renderItems = allItems.filter((item) => item.data.relatedBranches.includes(options.filter) )
+  }
+}
+
+const splitedTitle = options.title.split(" ");
 ---
 
-<Section> 
+<Section>
   <div class="flex flex-col gap-1 py-3 pb-5 px-2">
     <h1 class="dark:text-gray-600 text-gray-700 text-[60px] font-bold">
       {splitedTitle[0]}
@@ -24,12 +37,11 @@ const splitedTitle = options.title.split(" ");
     </h1>
   </div>
 
-  <div class="flex flex-wrap gap-3 mx-auto ">
-    {renderItems.map(({ data }) => (
-      <Card 
-            collection={options.collection}
-            data={data}
-      />
-    ))}
+  <div class="flex flex-wrap gap-3 mx-auto">
+    {
+      renderItems.map(({ data } : { data: any}) => (
+        <Card collection={options.collection} data={data} />
+      ))
+    }
   </div>
 </Section>
