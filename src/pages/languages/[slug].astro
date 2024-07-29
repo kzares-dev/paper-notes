@@ -24,7 +24,10 @@ export const getStaticPaths = ( async () => {
  
 }) satisfies GetStaticPaths; 
 
-const { language }: {language: CollectionEntry<"languages">} = Astro.props;
+export type Props = {
+    language: CollectionEntry<"languages">
+}
+const { language } = Astro.props;
 const { Content } = await language.render(); 
 ---
 

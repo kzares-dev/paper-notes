@@ -9,12 +9,24 @@ export const AppConfig = {
 
 export const languagesList = "python java javascript cpp c# go kotlin rust";
 
-export const pathsList = "android backend";
+export const pathsList = "android backend frontend";
 
 export const frameworksList = ""
 
-export function selectType(param: string): string {
-	if(languagesList.includes(param)) return "language"
-	else if(pathsList.includes(param)) return "path"
+export function selectType(param: string): "language" | "path" | "framework" {
+	if(languagesList.includes(param.toLowerCase())) return "language"
+	else if(pathsList.includes(param.toLowerCase())) return "path"
 	else return "framework"
+}
+
+const routeIdx = {
+    path: 0,
+    language: 1,
+    framework: 2,
+}
+
+export function getItemPlace(param: string): number {
+	const newRouteType = selectType(param);
+    const arrayPlace = routeIdx[newRouteType];
+	return arrayPlace
 }

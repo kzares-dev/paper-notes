@@ -1,15 +1,17 @@
+import { getItemPlace, selectType } from "@/config";
 import { atom } from "nanostores";
 
-export const route = atom<string[]>(["python"]);
+export const route = atom<string[]>(["", "", ""]);
+
 
 export function updateRoute(newRoute: string) {
+    let tempRoute = route.get()
+    const arrayPlace = getItemPlace(newRoute);
 
-    if(route.get().includes(newRoute)) {
-        const filtered =  route.get().filter((item) => item !== newRoute);
-        route.set(filtered);
-        return
-    };
-
-    route.set([...route.get(), newRoute])
-    console.log(route.get())
+    if(tempRoute[arrayPlace] === newRoute) {
+        tempRoute[arrayPlace] = "";
+    }else {
+        tempRoute[arrayPlace] = newRoute;
+    }
+    route.set(tempRoute)
 }

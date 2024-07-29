@@ -1,8 +1,13 @@
 ---
-import BranchList from "@/components/react/BranchList";
+import RenderCardList from "@/components/RenderCardList.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout head={{title:"", description:""}} >
-    <BranchList client:load />
+    <RenderCardList
+        options={{
+            title: "Coding areas",
+            collection: "paths",
+        }}
+    />
 </BaseLayout>

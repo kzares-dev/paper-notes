@@ -1,4 +1,4 @@
-import { selectType } from "@/config";
+import { getItemPlace } from "@/config";
 import { useStore } from "@nanostores/react";
 import { useEffect, useState } from "react";
 import { route, updateRoute } from "src/utils/store";
@@ -6,39 +6,34 @@ import Dialog from "./Dialog";
 
 const AddPath = ({ path, type }: { path: string; type: string }) => {
   const $route = useStore(route);
-  const [itemSelected, setItemSelected] = useState(
-    $route.includes(path.toLowerCase())
-  );
+  const [selected, setSelected] = useState("")
+  const [isSelected, setIsSelected] = useState<boolean>();
   const [showDialog, setShowDialog] = useState<boolean>(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
   const onPopupClose = () => {
     setShowDialog(!showDialog);
   };
   const onPopupAccept = () => {
-    updateRoute(selectedLanguage);
-    updateRoute(path);
-    setItemSelected(!itemSelected)
+    updateRoute(path.toLowerCase());
   }
 
   const onButtonPress = () => {
-    if(selectedLanguage && selectedLanguage === path.toLowerCase()) updateRoute(path) // remove the item
-    if(selectedLanguage && selectedLanguage !== path.toLowerCase()) setShowDialog(!showDialog);
-    if(!selectedLanguage) {
-      updateRoute(path);
-      setItemSelected(!itemSelected)
+    // display the popup asking if you whant to switch items
+    if(selected !== path.toLowerCase() && selected !== ""){
+      setShowDialog(!showDialog);
+      return;
     }
-
+    updateRoute(path.toLowerCase())
+    setIsSelected(!isSelected);
   };
 
   useEffect(() => {
-    // check if any of the selected items is a language
-    // if some one is it then block all others to be selected
-    const languageSelected = $route.filter(
-      (route) => selectType(route) === type
-    );
-    setSelectedLanguage(languageSelected[0] || "");
-  }, [itemSelected]);
+      const itemPlace = getItemPlace(path.toLowerCase())
+      setSelected($route[itemPlace]);
+      setIsSelected($route[itemPlace] === path.toLowerCase());
+  }, []);
+
+  console.log($route)
 
   return (
     <button
@@ -47,13 +42,13 @@ const AddPath = ({ path, type }: { path: string; type: string }) => {
     >
       {showDialog && <Dialog onAccept={onPopupAccept} onClose={onPopupClose} title={`Another programming ${type} was chosen previously, do you want to replace it?`} />}
 
-      {itemSelected ? (
+      {isSelected ? (
         <img src="/images/folder-check.svg" width={40} />
       ) : (
         <img src="/images/add.svg" width={40} />
       )}
 
-      {itemSelected ? (
+      {isSelected ? (
         <h1 className="text-orange-600">Selected</h1>
       ) : (
         <h1>

@@ -1,0 +1,42 @@
+---
+export type Props = {
+  data: any;
+  collection: "languages" | "paths";
+
+};
+
+const { data, collection } = Astro.props;
+---
+
+<a
+  href={`/${collection}/${data.name.toLowerCase()}`}
+  class="w-full md:max-w-[300px] h-fit py-5 pt-10 gap-4 px-2 bg-gray-50 border dark:border-none dark:bg-stone-800 z-2 relative rounded-md flex items-center flex-col font-mono hover:shadow-md transition-all"
+>
+  <div
+    class="p-5 rounded-full bg-white dark:bg-gray-400 border dark:border-none"
+  >
+    <img width={40} height={40} src={data.image} alt="" />
+  </div>
+
+  <h1 class="text-xl font-semibold underline">{data.name}</h1>
+
+  <p class="text-center text-sm dark:text-gray-400 line-clamp-3">
+    {" "}
+    {data.description}{" "}
+  </p>
+
+  <ul
+    class="flex justify-center flex-wrap gap-2 py-4 border-t dark:border-t-gray-600"
+  >
+    {
+      data.relatedLanguages && data.relatedLanguages
+        .split(" ")
+        .map((tag: string) => (
+          <li class="text-xs px-3 py-1 border rounded-md bg-gray-100 dark:bg-stone-600 dark:border-none ">
+            {" "}
+            {tag}{" "}
+          </li>
+        ))
+    }
+  </ul>
+</a>
