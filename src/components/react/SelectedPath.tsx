@@ -40,7 +40,6 @@ const SelectedPath = () => {
         <div className="-z-10 absolute -left-4 -right-4 bottom-5 h-[4px] dark:bg-orange-700 bg-orange-500 rounded-full" />
 
         {$route.map((item, idx) => {
-          console.log(item)
           let renderItem: ItemType;
           if (item === "") renderItem = placeholder[idx];
           else {

@@ -19,6 +19,9 @@ export function selectType(param: string): "language" | "path" | "framework" {
 	else return "framework"
 }
 
+export const selectedLanguageParagraph = "Lorem 20"
+export const selectedPathParagraph = "lorem 30"
+
 const routeIdx = {
     path: 0,
     language: 1,
