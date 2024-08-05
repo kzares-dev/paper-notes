@@ -19,8 +19,8 @@ export function selectType(param: string): "language" | "path" | "framework" {
 	else return "framework"
 }
 
-export const selectedLanguageParagraph = "Lorem 20"
-export const selectedPathParagraph = "lorem 30"
+export const selectedLanguageParagraph = "You have chosen a programming language, the next steph is select a coding area where you would like to work"
+export const selectedPathParagraph = "You have chosen a coding area that you like, the next steph is select a programming language to develop your ideas"
 
 const routeIdx = {
     path: 0,
