@@ -2,12 +2,11 @@
 import { getCollection } from "astro:content";
 import Section from "./Section.astro";
 import Card from "./Card.astro";
-import type { CollectionEntry } from "astro:content";
 import SelectedHeader from "./react/SelectedHeader";
 
 export type Props = {
   options: {
-    collection: "languages" | "paths";
+    collection: "languages" | "paths" | "frameworks";
     title: string;
     filter?: string;
   };
@@ -20,12 +19,17 @@ let renderItems: any = [];
 if (!options.filter) renderItems = allItems;
 else {
   // first check the type of data we are checking
-  if (options.collection === "paths") {
-    renderItems = allItems.filter((item) =>
+  if (options.collection === "paths" || options.collection === "frameworks") {
+    renderItems = allItems.filter((item: any) =>
       item.data.relatedLanguages.includes(options.filter)
     );
-  } else {
-    renderItems = allItems.filter((item) =>
+  }
+
+  if (
+    options.collection === "languages" ||
+    options.collection === "frameworks"
+  ) {
+    renderItems = allItems.filter((item: any) =>
       item.data.relatedBranches.includes(options.filter)
     );
   }

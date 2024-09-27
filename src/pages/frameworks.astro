@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import FrameworkList from "@/components/react/FrameworkList"
-
-
+import RenderCardList from "@/components/RenderCardList.astro";
 ---
 
 <BaseLayout head={{ title: "", description: "" }}>
-    <FrameworkList />
+  <RenderCardList
+    options={{
+      title: "Frameworks list",
+      collection: "frameworks",
+    }}
+  />
 </BaseLayout>

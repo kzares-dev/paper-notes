@@ -23,7 +23,18 @@ const languagesCollection = defineCollection({
     }
 })
 
+const frameworksCollection = defineCollection({
+    schema: ({image}) => {
+        z.object({
+            name: z.string(),
+            relatedPaths: z.string(),
+            relatedLanguages: z.string(),
+        })
+    }
+})
+
 export const collections = {
     paths: pathsCollection,
     languages: languagesCollection,
+    frameworks: frameworksCollection,
 }

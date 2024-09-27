@@ -33,7 +33,7 @@ const NextSteph = () => {
   const selectNextRoute = () => {
     if(next === "language") return `/paths/${$route[0]}/related-languages`;
     if(next === "branch") return `/languages/${$route[1]}/related-path`
-    else return "/framework"
+    else return "/frameworks"
 
   } 
 

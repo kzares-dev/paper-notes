@@ -1,7 +1,7 @@
 ---
 export type Props = {
   data: any;
-  collection: "languages" | "paths";
+  collection: "languages" | "paths" | "frameworks";
 
 };
 
@@ -35,6 +35,16 @@ const { data, collection } = Astro.props;
           <li class="text-xs px-3 py-1 border rounded-md bg-gray-100 dark:bg-stone-600 dark:border-none ">
             {" "}
             {tag}{" "}
+          </li>
+        ))
+    }
+
+    {
+      data.relatedBranches && data.relatedBranches
+        .split(" ")
+        .map((tag: string) => (
+          <li class="text-xs px-3 py-1 border rounded-md bg-gray-100 dark:bg-stone-600 dark:border-none ">
+            {tag}
           </li>
         ))
     }

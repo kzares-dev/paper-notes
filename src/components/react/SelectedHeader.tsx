@@ -7,12 +7,13 @@ function SelectedHeader({
 }: {
   selectedTitle: string;
   filter?: string;
-  collection: "languages" | "paths";
+  collection: "languages" | "paths" | "frameworks" ;
 }) {
   const unselectedCollection = collection === "languages" ? "path" : "language";
 
   const RenderSimpleTitle = ({ text }: { text: string }) => {
     const splitedText = text.split(" ");
+
     return (
       <div className="flex flex-col gap-1 py-3 pb-5 px-2">
         <h1 className="dark:text-gray-600 text-gray-700 text-[60px] font-bold">

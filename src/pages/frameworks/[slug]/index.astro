@@ -4,31 +4,29 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content"
-import AddPath from "@/components/react/AddPath"
 
 export const getStaticPaths =  ( async () => {
-    const careerPaths = await getCollection("paths");
-    const paths = careerPaths.map((path: CollectionEntry<"paths">) => {
+    const careerPaths = await getCollection("frameworks");
+    const frameworks = careerPaths.map((framework: CollectionEntry<"frameworks">) => {
         return {
             params : {
-                slug: path.slug
+                slug: framework.slug
             },
             props: {
-                path
+                framework
             }
         }
     })
-    return paths;
+    return frameworks;
 })
 
 type Props = {
-    path: CollectionEntry<"paths"> | any
+    framework: CollectionEntry<"frameworks"> | any
 }
 
-const { path }  = Astro.props;
-const { Content } = await path.render();
-
----                                                
+const { framework }  = Astro.props;
+const { Content } = await framework.render();
+---
 <BaseLayout head={{title: "" , description: "no description"}} >
     <Section>
 
@@ -37,19 +35,16 @@ const { Content } = await path.render();
                 <Image 
                     width={60}
                     height={60}
-                    src={path.data.image}
+                    src={framework.data.image}
                     alt=""
                 />
     
                 <div class="flex flex-col">
-                    <h1 class="text-gray-700  text-[50px] font-bold"> {path.data.name}  </h1>
+                    <h1 class="text-gray-700  text-[50px] font-bold"> {framework.data.name}  </h1>
     
-                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]"> {path.data.description} </p>
+                    <p class="text-sm text-gray-400 font-semibold max-w-[500px]"> {framework.data.description} </p>
                 </div>
-            </div>
-
-            <AddPath client:load path={path.data.name} type="path" />
-            
+            </div>            
         </div>
 
         <div class="prose prose-lg overflow-visible relative py-20 w-full">
